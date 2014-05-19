@@ -6,25 +6,29 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<style>
 			body { margin: 0; font-family:'Comic Sans','Comic Sans MS'; text-align: center; background-color: #efefef; }
-				h1 { margin-top:50px; }
+				div { background-color: #ccc; padding: 20px; margin:50px auto 0; width: 600px; }
 		</style>
 	</head>
 	<body>
-		<h1>Adder/Subtractor</h1>
-		
-		<label>X =</label>
-		<input id="X" type="number" placeholder="Enter an integer"><br />
-		<label>Y =</label>
-		<input id="Y" type="number" placeholder="Enter an integer"><br />
 
-		<button rel="minus">-</button>
-		<button rel="plus">+</button>
+		<div>
+			<h1>Adder/Subtractor</h1>
+			
+			<label>X =</label>
+			<input id="X" type="number" placeholder="Enter an integer"><br />
+			<label>Y =</label>
+			<input id="Y" type="number" placeholder="Enter an integer"><br />
 
-		<h2></h2>
+			<button rel="minus">-</button>
+			<button rel="plus">+</button>
+
+			<h2></h2>
+		</div>
+
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				
+
 				$('button').click(function(){
 					var x = parseInt($('input#X').val()) || 'error',
 						y = parseInt($('input#Y').val()) || 'error',
