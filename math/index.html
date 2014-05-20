@@ -30,12 +30,12 @@
 			$(document).ready(function() {
 
 				$('button').click(function(){
-					var x = parseInt($('input#X').val()) || 'error',
-						y = parseInt($('input#Y').val()) || 'error',
+					var x = parseInt($('input#X').val()) || false,
+						y = parseInt($('input#Y').val()) || false,
 						method = $(this).attr('rel'),
 						total, result;
 
-					if(x=='error' || y == 'error') result = 'Your inputs are wrong.';
+					if(!x || !y) result = 'Your inputs are wrong.';
 					else {
 						if(method=="minus") total = x - y;
 						else total = x + y;
