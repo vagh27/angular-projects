@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="homepage">
+<head>
+    <meta charset="UTF-8">
+    <title>World</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js" type="text/javascript"></script>
+</head>
+<body ng-init="text='tes tets df f sdf'" style="display: none;">
+	<div ng-controller="myCtr">
+		{{text | titlecase}}<br />
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, expedita, doloribus, facere beatae fuga magni error iure corporis nesciunt esse doloremque repudiandae alias itaque obcaecati at totam culpa dolores eaque porro vel consequuntur nobis consequatur numquam commodi ex. Reiciendis voluptates corporis possimus quaerat vero. Commodi, quas, esse, praesentium excepturi ullam repellat voluptas perferendis officia perspiciatis libero nihil eius obcaecati fugiat? Minus, similique, harum, doloribus dolores natus repudiandae in laborum odio officia cum quis aut ipsum ipsa nam illo iusto eum quam magnam asperiores nesciunt adipisci odit quos nulla distinctio ex sunt earum vitae accusantium iste beatae amet omnis quas fugiat velit hic magni atque voluptatibus tempora et recusandae ab repellendus vel modi quaerat delectus commodi corporis pariatur perferendis perspiciatis itaque. Facere, aliquid, ducimus, molestias recusandae earum maxime veritatis repudiandae distinctio magnam illo in impedit nihil quisquam temporibus hic voluptatibus dolor quas praesentium fuga deserunt. Repellat, molestiae, ratione, nulla culpa totam minima recusandae id tempora alias consequuntur nam porro. Nisi, reiciendis, fuga amet odit pariatur illo harum iusto quas eos quis libero perspiciatis temporibus dolorem doloribus culpa delectus vel quaerat quisquam velit aliquid tenetur ipsum assumenda quo consectetur voluptatibus nam dolore. Quae, velit, porro eaque eos tenetur placeat quaerat eligendi facere.
+
+		http://cssdeck.com/labs/vqzsisfr
+		http://cssdeck.com/labs/hnsb11gq
+		http://cssdeck.com/labs/tpelquuv
+	</div>
+    <script>
+    	angular.module('homepage',[])
+    		.filter('titlecase',function(){
+    			return function(input){
+    				return input.replace(/(?:^|\s)\w/g, function(match) {
+				        return match.toUpperCase();
+				    });
+    			}
+    		})
+    		.controller('myCtr',function ($scope){ 
+    			$('body').fadeIn();
+    		});
+    </script>
+</body>
+</html>

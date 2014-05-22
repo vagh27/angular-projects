@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app="madlib">
+<head>
+    <meta charset="UTF-8">
+    <title>Mad Lib</title>
+
+    <style>
+        * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
+        body { font:normal 16px 'Garamond'; margin: 20px; background-color: #ddd; }
+            .wrapper { width: 100%; max-width:800px; margin: 0 auto; display: none; padding: 20px; background-color: #fff; box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.3); }
+            .form { width: 100%; }
+                input { display:inline-block; width:49%; height:30px; line-height:30px; border:1px solid #ccc; padding: 0 4px; margin:2px 0; }
+            img { display: block; margin: 0 auto; max-width:100%; }
+                .face { position: fixed; bottom: -150px; left: 50%; margin-left: -100px; -webkit-transition: all 6s 2s linear; -moz-transition: all 6s 2s linear; -o-transition: all 6s 2s linear; -ms-transition: all 6s 2s linear; transition: all 6s 2s linear; }
+            p { line-height:24px;}
+
+    </style>
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js" type="text/javascript"></script>
+    <script src="sanitize.js" type="text/javascript"></script>
+</head>
+<body>
+    <div ng-controller="wrapper" class="wrapper">
+        <img src="logo.png">
+        <div class="form">
+            <input type="text" ng-model="data.century" placeholder="Number">
+            <input type="text" ng-model="data.adj1" placeholder="Adjective">
+            <input type="text" ng-model="data.adj2" placeholder="Adjective">
+            <input type="text" ng-model="data.location" placeholder="Business Type">
+            <input type="text" ng-model="data.name" placeholder="Name">
+            <input type="text" ng-model="data.verb" placeholder="Verb">
+            <input type="text" ng-model="data.occupation" placeholder="Occupation">
+            <input type="text" ng-model="data.university" placeholder="University">
+            <input type="text" ng-model="data.verb2" placeholder="Verb">
+            <input type="text" ng-model="data.adj3" placeholder="Adjective">
+        </div>
+    	<div class="text">
+    		<p>In the last years of the <span ng-bind-html='data.century || "17th" | wrap'></span> Century there was to be found among the {{data.adj1 || 'fops'}} and {{data.adj2 || 'fools'}} of the London {{data.location || 'coffee-houses'}} one rangy, gangling flitch called {{data.name || 'Ebenezer Cooke' | titlecase}}, more ambitious than talented, and yet more talented than prudent, who, like his friends-in-folly, all of whom were supposed to be {{data.verb || 'educating'}} at Oxford or {{data.university || 'Cambridge'}}, had found the sound of Mother English more fun to game with than her sense to labor over, and so rather than applying himself to the pains of {{data.occupation || 'scholarship'}}, had learned the knack of {{data.verb2 || 'versifying'}}, and ground out quires of couplets after the fashion of the day, {{data.adj3 || 'afroth'}} with Joves and Jupiters, aclang with jarring rhymes, and string-taut with similes stretched to the snapping-point.</p>
+            <p>- John Barth</p>
+    	</div>
+    </div>
+    <img src="face.png" class="face">
+    <script src="main.js"></script>
+</body>
+</html>
