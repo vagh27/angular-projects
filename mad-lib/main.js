@@ -1,7 +1,3 @@
-//on focus of input field, highlight the model output
-//is there a controller 'this'?
-//apply ng-bind-html to the controller so that all data bindings are html ready?
-//data binding inheritance is curious
 angular.module('madlib',['ngSanitize'])
     .filter('wrap',function(){
         return function(input){
@@ -15,22 +11,40 @@ angular.module('madlib',['ngSanitize'])
             });
         }
     })
-    .controller('wrapper',function ($scope){ 
-        $scope.data = {
-            /* scope data shouldn't be defined here in this specific case 
-                century:null,
-                adj1:null,
-                adj2:null,
-                location:null,
-                name:null,
-                verb:null,
-                university:null,
-                occupation:null,
-                verb2:null,
-                adj3:null
+
+    //FORM CONTROLLER
+    .controller('form',function ($scope,$rootScope){ 
+        $scope.data = { }
+        $scope.submit = function(){
+            //after submitting the form, why does the 'result' controller now live update?  
+            if($scope.madfields.$valid) { 
+                $rootScope.formView = false;
+                $rootScope.$broadcast('displayData', $scope.data);
+            }
+            /* or perhaps?
+                angular.forEach($scope.madfields.$error.required, function(field,key){
+                    //add class?
+                });
             */
+        };
+    })
+
+    //RESULTS CONTROLLER
+    .controller('result',function ($scope,$rootScope){
+        $scope.$on('displayData', function(event, data) {
+            $scope.results = data;
+        });
+        $scope.toggleForm = function(){
+            $rootScope.formView = true;
         }
-        $('.wrapper').fadeIn();
+    })
+
+    //SUPERFLUOUS RUN FUNCTION
+    .run(function($rootScope) { 
+        $rootScope.formView = true; //can also be defined in ng-init, outside of the controllers...for some reason
+
+        //would you bake this into angular or just create a normal jquery onready - since it has nothing to do with angular?
+        $('.wrapper').fadeIn(); 
         $('.face').css('bottom','-50px');
     });
         
