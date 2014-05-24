@@ -14,8 +14,8 @@
         <div ng-if="formView">
             <form ng-submit="submitted=true; submit();" ng-controller="form" name="madfields" novalidate>
                 <input type="number" ng-model="data.century" placeholder="Number" ng-class="{red:madfields.century.$invalid && submitted}" name="century" required>
-                <input type="text" ng-model="data.adj1" placeholder="Adjective" ng-class="{red:madfields.adj.$invalid && submitted}" name="adj" required>
-                <input type="text" ng-model="data.adj2" placeholder="Adjective" ng-class="{red:madfields.adj2.$invalid && submitted}" name="adj2" required>
+                <input type="text" ng-model="data.noun1" placeholder="Plural Noun" ng-class="{red:madfields.noun1.$invalid && submitted}" name="noun1" required>
+                <input type="text" ng-model="data.noun2" placeholder="Plural Noun" ng-class="{red:madfields.noun2.$invalid && submitted}" name="noun2" required>
                 <input type="text" ng-model="data.location" placeholder="Business Type" ng-class="{red:madfields.location.$invalid && submitted}" name="location" required>
                 <input type="text" ng-model="data.name" placeholder="Name" ng-class="{red:madfields.name.$invalid && submitted}" name="name" required>
                 <input type="text" ng-model="data.verb" placeholder="Verb" ng-class="{red:madfields.verb.$invalid && submitted}" name="verb" required>
@@ -28,7 +28,7 @@
         </div>
     	<div class="text" ng-controller="result">
             <div ng-if="!formView">
-        		<p>In the last years of the <span ng-bind-html='results.century || "17th" | wrap'></span> Century there was to be found among the <b>{{results.adj1 || 'fops'}}</b> and <b>{{results.adj2 || 'fools'}}</b> of the London <b>{{results.location || 'coffee-houses'}}</b> one rangy, gangling flitch called <b>{{results.name || 'Ebenezer Cooke' | titlecase}}</b>, more ambitious than talented, and yet more talented than prudent, who, like his friends-in-folly, all of whom were supposed to be <b>{{results.verb || 'educating'}}</b> at Oxford or <b>{{results.university || 'Cambridge'}}</b>, had found the sound of Mother English more fun to game with than her sense to labor over, and so rather than applying himself to the pains of <b>{{results.occupation || 'scholarship'}}</b>, had learned the knack of <b>{{results.verb2 || 'versifying'}}</b>, and ground out quires of couplets after the fashion of the day, <b>{{results.adj3 || 'afroth'}}</b> with Joves and Jupiters, aclang with jarring rhymes, and string-taut with similes stretched to the snapping-point.</p>
+        		<p>In the last years of the <span ng-bind-html='results.century || "17th" | wrap'></span> Century there was to be found among the <b>{{results.noun1 || 'fops'}}</b> and <b>{{results.noun2 || 'fools'}}</b> of the London <b>{{results.location || 'coffee-houses'}}</b> one rangy, gangling flitch called <b>{{results.name || 'Ebenezer Cooke' | titlecase}}</b>, more ambitious than talented, and yet more talented than prudent, who, like his friends-in-folly, all of whom were supposed to be <b>{{results.verb || 'educating'}}</b> at Oxford or <b>{{results.university || 'Cambridge'}}</b>, had found the sound of Mother English more fun to game with than her sense to labor over, and so rather than applying himself to the pains of <b>{{results.occupation || 'scholarship'}}</b>, had learned the knack of <b>{{results.verb2 || 'versifying'}}</b>, and ground out quires of couplets after the fashion of the day, <b>{{results.adj3 || 'afroth'}}</b> with Joves and Jupiters, aclang with jarring rhymes, and string-taut with similes stretched to the snapping-point.</p>
                 <p>- John Barth</p>
                 <button ng-click="toggleForm()">Start Over</button>
             </div>
