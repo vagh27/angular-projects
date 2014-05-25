@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app="calc">
+<head>
+    <meta charset="UTF-8">
+    <title>Rudimentary Mathing Widget</title>
+    <link rel="stylesheet" href="base.css">
+    <script src="../js/libs/jquery.js"></script>
+    <script src="../js/libs/angular.js"></script>
+</head>
+<body>
+	<div class="wrapper" ng-controller="all">
+		<h1>Rudimentary Mathing Widget</h1>
+	    <div ng-controller="details" class="block details">
+	    	<form ng-submit="submit(); submitted = true;" name="formDetails" novalidate>
+	    		<input ng-class="{error:submitted && formDetails.price.$invalid}" name="price" ng-model="data.price" type="number" placeholder="Meal Price" required>
+	    		<input ng-class="{error:submitted && formDetails.tax.$invalid}" name="tax"  ng-model="data.tax" type="number" placeholder="Tax Rate %" required>
+	    		<input ng-class="{error:submitted && formDetails.tip.$invalid}" name="tip"  ng-model="data.tip" type="number" placeholder="Tip Percentage %" required>
+	    		<input type="submit">
+	    		<input type="reset">
+	    	</form>
+	    </div>
+	    <div ng-controller="charges" class="block charges">
+	    	<label>Subtotal<span>{{charges.subtotal || 0 | currency}}</span></label>
+	    	<label>Tip<span>{{charges.tipamount || 0 | currency}}</span></label>
+	    	<label>Total<span>{{charges.total || 0 | currency}}</span></label>
+	    	
+	    </div>
+	    <div ng-controller="earnings" class="block earnings">
+	    	<label>Tip Total:<span>{{earnings.tiptotal || 0 | currency}}</span></label>
+	    	<label>Meal Count<span>{{earnings.mealcount || 0}}</span></label>
+	    	<label>Average Tip per Meal<span>{{earnings.avetip || 0 | currency}}</span></label>
+	    </div>
+		<button ng-click="clear();">Start Over</button>
+	    <div class="clear"></div>
+	</div><!-- end wrapper -->
+    <script src="main.js"></script>
+</body>
+</html>
