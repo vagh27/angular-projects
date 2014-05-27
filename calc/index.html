@@ -19,11 +19,10 @@
 	    		<input type="reset">
 	    	</form>
 	    </div>
-	    <div ng-controller="charges" class="block charges">
+	    <div ng-controller="charges" class="block charges" ng-init="charges.test = 0">
 	    	<label>Subtotal<span>{{charges.subtotal || 0 | currency}}</span></label>
 	    	<label>Tip<span>{{charges.tipamount || 0 | currency}}</span></label>
-	    	<label>Total<span>{{charges.total || 0 | currency}}</span></label>
-	    	
+	    	<label>Total<span>{{charges.total || 0 | currency}}</span></label>	    	
 	    </div>
 	    <div ng-controller="earnings" class="block earnings">
 	    	<label>Tip Total:<span>{{earnings.tiptotal || 0 | currency}}</span></label>
