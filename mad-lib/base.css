@@ -1,12 +1,31 @@
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
 body { font:normal 16px 'Garamond'; margin: 20px; background-color: #ddd; }
-    .wrapper { width: 100%; max-width:800px; margin: 0 auto; display: none; padding: 20px; background-color: #fff; box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.3); }
-    form { width: 100%; }
+    .wrapper { width: 100%; max-width:800px; margin: 0 auto; display: none; padding: 20px; background-color: #fff; box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.3);  }
+    form { width: 100%; margin-top: 20px; }
         input { display:inline-block; width:49%; height:30px; line-height:30px; border:1px solid #ccc; padding: 0 4px; margin:2px 0; outline:0; }
         	input.red { background-color: #fde3e3; }
-        input[type=submit]{background-color:#d24744; cursor:pointer; width: 100%; color:#fff; }
+        input[type=submit]{background-color:#d24744; cursor:pointer; width:99%; color:#fff; }
         	input[type=submit]:hover { background-color:#a93d3c; }
     img { display: block; margin: 0 auto; max-width:100%; }
         .face { position: fixed; bottom: -150px; left: 50%; margin-left: -100px; -webkit-transition: all 6s 2s linear; -moz-transition: all 6s 2s linear; -o-transition: all 6s 2s linear; -ms-transition: all 6s 2s linear; transition: all 6s 2s linear; }
     p { line-height:24px; }
         p b { color:#d24744; }
+    
+    .slidewrap { height:250px; overflow: hidden; position: relative; width: 100%; }
+        .form-view,.results-view { position:absolute; top: 0; }
+
+    /* starting animations */
+    .form-view.ng-leave,.results-view.ng-leave {
+        -webkit-animation:2s out;
+        animation:2s out;
+    }
+    .form-view.ng-enter,.results-view.ng-enter {
+        -webkit-animation:2s in;
+        animation:2s in;
+    }
+
+    @keyframes out {from { top: 0; } to { top: 250px; } }
+    @-webkit-keyframes out {from { top: 0; } to { top: 250px; } }
+
+    @keyframes in {from { top:-250px; } to { top:0px; } }
+    @-webkit-keyframes in {from { top:-250px; } to { top:0px; } }

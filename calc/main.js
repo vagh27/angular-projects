@@ -41,7 +41,7 @@ angular.module('calc',[])
 
             //do this stuff
             tiptotal += $scope.earnings.tipamount,
-            mealcount++,
+            //mealcount++,
             avetip = tiptotal / mealcount;
 
             //set scope

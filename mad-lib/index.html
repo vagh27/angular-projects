@@ -3,36 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Mad Lib</title>
+    <link rel="stylesheet" href="bower_components/famous-angular/dist/famous-angular.css">
     <link rel="stylesheet" href="base.css">
+
     <script src="../js/libs/jquery.js"></script>
     <script src="../js/libs/angular.js"></script>
-    <script src="sanitize.js" type="text/javascript"></script>
+    
+    <script src="bower_components/requirejs/require.js"></script>
+    <script> require.config({baseUrl: 'bower_components'}); </script>
+    <script src="bower_components/famous-angular/dist/famous-angular.js"></script>
+
+    <script src="../js/sanitize.js" type="text/javascript"></script>
+    <script src="../js/angular-animate.js" type="text/javascript"></script>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper" ng-init="formView=true">
         <img src="logo.png">
-        <div ng-if="formView">
-            <form ng-submit="submitted=true; submit();" ng-controller="form" name="madfields" novalidate>
-                <input type="number" ng-model="data.century" placeholder="Number" ng-class="{red:madfields.century.$invalid && submitted}" name="century" required>
-                <input type="text" ng-model="data.noun1" placeholder="Plural Noun" ng-class="{red:madfields.noun1.$invalid && submitted}" name="noun1" required>
-                <input type="text" ng-model="data.noun2" placeholder="Plural Noun" ng-class="{red:madfields.noun2.$invalid && submitted}" name="noun2" required>
-                <input type="text" ng-model="data.location" placeholder="Business Type" ng-class="{red:madfields.location.$invalid && submitted}" name="location" required>
-                <input type="text" ng-model="data.name" placeholder="Name" ng-class="{red:madfields.name.$invalid && submitted}" name="name" required>
-                <input type="text" ng-model="data.verb" placeholder="Verb" ng-class="{red:madfields.verb.$invalid && submitted}" name="verb" required>
-                <input type="text" ng-model="data.occupation" placeholder="Occupation" ng-class="{red:madfields.occupation.$invalid && submitted}" name="occupation" required>
-                <input type="text" ng-model="data.university" placeholder="University" ng-class="{red:madfields.university.$invalid && submitted}" name="university" required>
-                <input type="text" ng-model="data.verb2" placeholder="Verb" ng-class="{red:madfields.verb2.$invalid && submitted}" name="verb2" required>
-                <input type="text" ng-model="data.adj3" placeholder="Adjective" ng-class="{red:madfields.adj3.$invalid && submitted}" name="adj3" required>
-                <input type="submit">
-            </form>
-        </div>
-    	<div class="text" ng-controller="result">
-            <div ng-if="!formView">
-        		<p>In the last years of the <span ng-bind-html='results.century || "17th" | wrap'></span> Century there was to be found among the <b>{{results.noun1 || 'fops'}}</b> and <b>{{results.noun2 || 'fools'}}</b> of the London <b>{{results.location || 'coffee-houses'}}</b> one rangy, gangling flitch called <b>{{results.name || 'Ebenezer Cooke' | titlecase}}</b>, more ambitious than talented, and yet more talented than prudent, who, like his friends-in-folly, all of whom were supposed to be <b>{{results.verb || 'educating'}}</b> at Oxford or <b>{{results.university || 'Cambridge'}}</b>, had found the sound of Mother English more fun to game with than her sense to labor over, and so rather than applying himself to the pains of <b>{{results.occupation || 'scholarship'}}</b>, had learned the knack of <b>{{results.verb2 || 'versifying'}}</b>, and ground out quires of couplets after the fashion of the day, <b>{{results.adj3 || 'afroth'}}</b> with Joves and Jupiters, aclang with jarring rhymes, and string-taut with similes stretched to the snapping-point.</p>
-                <p>- John Barth</p>
-                <button ng-click="toggleForm()">Start Over</button>
+        <div class="slidewrap">
+            <div ng-if="formView" class="form-view">
+                <form ng-submit="submitted=true; submit();" ng-controller="form" name="madfields" novalidate>
+                    <input type="number" ng-model="data.century" placeholder="Number" ng-class="{red:madfields.century.$invalid && submitted}" name="century" required>
+                    <input type="text" ng-model="data.noun1" placeholder="Plural Noun" ng-class="{red:madfields.noun1.$invalid && submitted}" name="noun1" required>
+                    <input type="text" ng-model="data.noun2" placeholder="Plural Noun" ng-class="{red:madfields.noun2.$invalid && submitted}" name="noun2" required>
+                    <input type="text" ng-model="data.location" placeholder="Business Type" ng-class="{red:madfields.location.$invalid && submitted}" name="location" required>
+                    <input type="text" ng-model="data.name" placeholder="Name" ng-class="{red:madfields.name.$invalid && submitted}" name="name" required>
+                    <input type="text" ng-model="data.verb" placeholder="Verb" ng-class="{red:madfields.verb.$invalid && submitted}" name="verb" required>
+                    <input type="text" ng-model="data.occupation" placeholder="Occupation" ng-class="{red:madfields.occupation.$invalid && submitted}" name="occupation" required>
+                    <input type="text" ng-model="data.university" placeholder="University" ng-class="{red:madfields.university.$invalid && submitted}" name="university" required>
+                    <input type="text" ng-model="data.verb2" placeholder="Verb" ng-class="{red:madfields.verb2.$invalid && submitted}" name="verb2" required>
+                    <input type="text" ng-model="data.adj3" placeholder="Adjective" ng-class="{red:madfields.adj3.$invalid && submitted}" name="adj3" required>
+                    <input type="submit">
+                </form>
             </div>
-    	</div>
+        	<div class="text" ng-controller="result">
+                <div ng-if="!formView" class="results-view">
+            		<p>In the last years of the <span ng-bind-html='results.century || "17th" | wrap'></span> Century there was to be found among the <b>{{results.noun1 || 'fops'}}</b> and <b>{{results.noun2 || 'fools'}}</b> of the London <b>{{results.location || 'coffee-houses'}}</b> one rangy, gangling flitch called <b>{{results.name || 'Ebenezer Cooke' | titlecase}}</b>, more ambitious than talented, and yet more talented than prudent, who, like his friends-in-folly, all of whom were supposed to be <b>{{results.verb || 'educating'}}</b> at Oxford or <b>{{results.university || 'Cambridge'}}</b>, had found the sound of Mother English more fun to game with than her sense to labor over, and so rather than applying himself to the pains of <b>{{results.occupation || 'scholarship'}}</b>, had learned the knack of <b>{{results.verb2 || 'versifying'}}</b>, and ground out quires of couplets after the fashion of the day, <b>{{results.adj3 || 'afroth'}}</b> with Joves and Jupiters, aclang with jarring rhymes, and string-taut with similes stretched to the snapping-point.</p>
+                    <p>- John Barth</p>
+                    <button ng-click="toggleForm()">Start Over</button>
+                </div>
+        	</div>
+        </div>
     </div>
     <img src="face.png" class="face">
     <script src="main.js"></script>

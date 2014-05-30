@@ -1,0 +1,218 @@
+<!doctype html>
+<html ng-app="animate">
+<head>
+    <meta charset="UTF-8">
+    <title>Animations</title>
+    <script src="../js/libs/jquery.js"></script>
+    <script src="../js/libs/angular.js"></script>
+    <script src="../js/angular-animate.js"></script>
+    <style>
+		/* starting animations */
+		.my-special-animation.ng-enter {
+		  -webkit-animation:3.5s red-to-blue;
+		  animation:3.5s red-to-blue;
+		}
+
+		@keyframes red-to-blue {
+		  from { background:red; }
+		  to { background:blue; }
+		}
+
+		@-webkit-keyframes red-to-blue {
+		  from { background:red; }
+		  to { background:blue; }
+		}
+		.my-repeat-animation.ng-enter, 
+		.my-repeat-animation.ng-leave, 
+		.my-repeat-animation.ng-move {
+		  -webkit-transition: 0.5s linear all;
+		  transition: 0.5s linear all;
+		  position:relative;
+		}
+
+		.my-repeat-animation.ng-enter {
+		  left:-10px;
+		  opacity:0;
+		}
+		.my-repeat-animation.ng-enter.ng-enter-active {
+		  left:0;
+		  opacity:1;
+		}
+
+		.my-repeat-animation.ng-leave {
+		  left:0;
+		  opacity:1;
+		}
+		.my-repeat-animation.ng-leave.ng-leave-active {
+		  left:-10px;
+		  opacity:0;
+		}
+
+		.my-repeat-animation.ng-move {
+		  opacity:0.5;
+		}
+		.my-repeat-animation.ng-move.ng-move-active {
+		  opacity:1;
+		}
+		.my-slide-container {
+		  position:relative;
+		}
+		.my-slide-animation.ng-enter, .my-slide-animation.ng-leave {
+		  -webkit-transition:0.5s linear all;
+		  transition:0.5s linear all;
+
+		  position:absolute;
+		  top:0;
+		  left:0;
+		  right:0;
+		  height:600px;
+		}
+
+		.my-slide-animation.ng-enter {
+		  z-index:100;
+		  top:600px;
+		  opacity:0;
+		}
+		.my-slide-animation.ng-enter.ng-enter-active {
+		  top:0;
+		  opacity:1;
+		}
+
+		.my-slide-animation.ng-leave {
+		  z-index:101;
+		  top:0;
+		  opacity:1;
+		}
+		.my-slide-animation.ng-leave.ng-leave-active {
+		  top:-600px;
+		  opacity:0;
+		}
+		.my-switch-container {
+		  position:relative;
+		  height:500px;
+		}
+
+		.my-switch-animation.ng-enter,
+		.my-switch-animation.ng-leave {
+		  -webkit-transition:0.5s linear all;
+		  transition:0.5s linear all;
+		  height:500px;
+
+		  position:absolute;
+		  top:0;
+		  left:0;
+		  right:0;
+		}
+
+		.my-switch-animation.ng-enter {
+		  left:100%;
+		}
+
+		.my-switch-animation.ng-leave,
+		.my-switch-animation.ng-enter.ng-enter-active {
+		  left:0;
+		}
+
+		.my-switch-animation.ng-leave.ng-leave-active {
+		  left:-100%;
+		}
+
+		.my-toggle-animation {
+		  -webkit-transition:0.5s linear all;
+		  transition:0.5s linear all;
+
+		  background:white;
+		  padding:10px;
+		  border:1px solid black;
+		  color:black;
+		}
+
+		.my-toggle-animation.disabled {
+		  background:grey;
+		  color:#555;
+		  border-color:#555;
+		}
+
+		.my-show-hide-animation.ng-hide-add,
+		.my-show-hide-animation.ng-hide-remove {
+		  -webkit-transition:0.5s linear all;
+		  transition:0.5s linear all;
+
+		  /* remember to add this */
+		  display:block!important;
+		  opacity:1;
+		}
+		.my-show-hide-animation.ng-hide {
+		  opacity:0;
+		}
+    </style>
+</head>
+<body>
+	<div ng-init="on=true">
+		<button ng-click="on=!on">Toggle On/Off</button>
+		<div class="my-special-animation" ng-if="on">
+			This content will enter and leave
+		</div>
+	</div>
+
+	<div ng-init="items=[1,2,3,4,5,6,7,8,9]">
+	  <input placeholder="Filter Repeat Items..." ng-model="f" /> 
+	  <div data-ng-repeat="item in items | filter:f track by item" class="my-repeat-animation">
+	    {{item}}
+	  </div>
+	</div>
+	<div ng-init="myExp='one'">
+	  <button ng-click="myExp='one'">One</button>
+	  <button ng-click="myExp='two'">Two</button>
+	  <button ng-click="myExp='three'">Three</button>
+	  <div class="my-slide-container">
+	    <div ng-include="myExp" class="my-slide-animation"></div>
+	  </div>
+	</div>
+
+	<script type="text/ng-template" id="one">
+	  one
+	</script>
+
+	<script type="text/ng-template" id="two">
+	  two
+	</script>
+
+	<script type="text/ng-template" id="three">
+	  three
+	</script>
+
+	<div ng-init="myExp2='one'">
+	  <button ng-click="myExp2='one'">One</button>
+	  <button ng-click="myExp2='two'">Two</button>
+	  <button ng-click="myExp2='three'">Three</button>
+	  <div ng-switch="myExp2" class="my-switch-container">
+	    <div ng-switch-when="one" class="my-switch-animation">
+	      one
+	    </div>
+	    <div ng-switch-when="two" class="my-switch-animation">
+	      two
+	    </div>
+	    <div ng-switch-when="three" class="my-switch-animation">
+	      three
+	    </div>
+	  </div>
+	</div>
+
+	<div ng-init="disabled=false">
+	  <button ng-click="disabled=!disabled">Toggle Disable</button>
+	  <div ng-class="{disabled:disabled}" class="my-toggle-animation">
+	    Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+	  </div>
+	</div>
+
+	<div ng-init="isHidden=false">
+	  <button ng-click="isHidden=!isHidden">Show / Hide Element</button>
+	  <div class="my-show-hide-animation" ng-hide="isHidden">
+	    I am visible!
+	  </div>
+	</div>
+
+	<script src="main.js"></script>
+</body>
+</html>

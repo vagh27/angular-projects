@@ -1,0 +1,74 @@
+<!doctype html>
+<html ng-app="animate2">
+<head>
+    <meta charset="UTF-8">
+    <title>Animations</title>
+    <script src="../js/libs/jquery.js"></script>
+    <script src="../js/libs/angular.js"></script>
+    <script src="angular-animate.js"></script>
+    <style>
+		.repeat-animation.ng-enter-stagger {
+		  /* 200ms will be applied between each sucessive enter operation */ 
+		  -webkit-transition-delay:0.2s;
+		  transition-delay:0.2s;
+
+		  /* this is here to avoid accidental CSS inheritance */
+		  -webkit-transition-duration:0;
+		  transition-duration:0;
+		}
+
+		.repeat-animation.ng-enter {
+		  -webkit-transition:0.5s linear all;
+		  transition:0.5s linear all;
+
+		  opacity:0;
+		  line-height:0;
+		}
+
+		.repeat-animation.ng-enter.ng-enter-active {
+		  opacity:1;
+		  line-height:20px;
+		}
+		.repeat-animation.ng-enter-stagger,
+		.repeat-animation.ng-leave-stagger,
+		.repeat-animation.ng-move-stagger {
+		  /* 200ms will be applied between each sucessive enter operation */ 
+		  -webkit-transition-delay:0.2s;
+		  transition-delay:0.2s;
+		}
+
+		.repeat-animation.ng-enter,
+		.repeat-animation.ng-leave,
+		.repeat-animation.ng-move {
+		  -webkit-transition:0.5s linear all;
+		  transition:0.5s linear all;
+		}
+
+		.repeat-animation.ng-leave.ng-leave-active,
+		.repeat-animation.ng-enter,
+		.repeat-animation.ng-move {
+		  -webkit-transition:0.5s linear all;
+		  transition:0.5s linear all;
+
+		  opacity:0;
+		  line-height:0;
+		}
+
+		.repeat-animation.ng-leave,
+		.repeat-animation.ng-move.ng-move-active,
+		.repeat-animation.ng-enter.ng-enter-active {
+		  opacity:1;
+		  line-height:20px;
+		}
+    </style>
+</head>
+<body>
+	<div ng-init="items=['a','b','c','d','e','x']">
+	  <input placeholder="filter" ng-model="f" />
+	  <div ng-repeat="item in items | filter:f" class="repeat-animation">
+	    {{item}}
+	  </div>
+	</div>
+	<script src="main2.js"></script>
+</body>
+</html>

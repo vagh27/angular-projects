@@ -1,0 +1,1 @@
+angular.module('animate2',['ngAnimate']);
