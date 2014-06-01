@@ -25,12 +25,7 @@ function ResultCtr($scope,$rootScope) {
     }
 };
 
-//RESULTS CONTROLLER
-function FACtr($scope,$rootScope) {
-    alert('1')
-};
-
-angular.module('madlib',['famous.angular','ngSanitize','ngAnimate'])
+angular.module('madlib',['ngSanitize','ngAnimate'])
     .filter('wrap',function(){
         return function(input){
             if(input) return "<b>" + input + "</b>";

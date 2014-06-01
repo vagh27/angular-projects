@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app="xhr">
+<head>
+    <meta charset="UTF-8">
+    <title>World</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div ng-controller="same">
+    	<button ng-click="getJSONData()">Demo It!</button>
+        <h1>Results</h1>
+        <div class="box" ng-repeat="color in colors">
+            <p>Color: {{ color.name }}</p>
+            <p>RGB Value: {{ color.value }}</p>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

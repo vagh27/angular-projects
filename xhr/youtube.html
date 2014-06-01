@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app="CORSDemo">
+<head>
+    <meta charset="UTF-8">
+    <title>Thinkful AngularJS | CORS Demo</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="youtube.js"></script>
+</head>
+<body>
+    <div>
+        <h1>YouTube Searcher</h1>
+        <p>Search for YouTube videos by keyword</p>
+    </div>
+    <div ng-controller="MyController">
+        <form ng-submit="searchYouTube(keyword)">
+            <input type="text" name="keyword" ng-model="keyword" required>
+            <input type="submit" value="Submit" id="submit">
+        </form>
+        <div class="results" ng-if="results">
+            <h2>We found {{ results.length }} results for {{ keyword }}</h2>
+            <div ng-repeat="result in results">
+                <iframe ng-src="{{ trustSrc(embedUrl + result.id.videoId) }}" frameborder="0" width="480" height="390"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
